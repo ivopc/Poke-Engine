@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Red Vs. Ash: The Game</title>
+    <meta charset="UTF-8">
+    <link type="text/css" rel="stylesheet" href="css/style.game.css">
+    <link type="text/css" rel="stylesheet" href="css/battle.game.css">
+    <link type="text/css" rel="stylesheet" href="css/bar.game.css">
+    <link type="text/css" rel="stylesheet" href="css/character.game.css">
+    <link type="text/css" rel="stylesheet" href="css/icon.game.css">
+</head>
+<body>
+    <div id="mask"></div>
+    <div id="content">
+        <div id="game">
+            <div id="level">
+                <div id="all-in-world">
+                    <div id="world">
+                        <div id="map"></div>
+                        <div id="map-layer"></div>
+                        <div id="player">
+                            <div id="character" class=""></div>
+                        </div>
+                    </div>
+                    <div id="map-objects"></div>
+                </div>
+                <div id="level-menu">
+                    <ul>
+                        <li class="level-icon icon-pokeball"></li>
+                        <li class="level-icon icon-bag"></li>
+                        <li class="level-icon icon-config"></li>
+                    </ul>
+                </div>
+                <div id="load_layer">
+                    <img alt="Carregando..." title="Carregando..." class="img_loader" src="img/loader.gif">
+                </div>
+                <div id="battle"></div>
+            </div>
+            <div id="cache"></div>
+        </div>
+    </div>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenLite.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/jquery.gsap.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/async/2.6.2/async.min.js"></script>
+    <script type="text/javascript" src="js/engine/init.js"></script>
+    <script type="text/javascript" src="js/engine/load.js"></script>
+    <script type="text/javascript" src="js/engine/keyboard.js"></script>
+    <script type="text/javascript" src="js/engine/movement.js"></script>
+    <script type="text/javascript" src="js/engine/map.js"></script>
+     <script type="text/javascript" src="js/engine/camera.js"></script>
+</body>
+</html>
