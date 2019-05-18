@@ -94,7 +94,6 @@ Game.prototype.cameraUpdate = function (obj, centralize, mapMaxLimit, timer) {
     };
 };
 
-// fazer a câmera seguir os pontos escolhidos --> método principal
 Game.prototype.cameraFollow = function (object) {
 
     if (!object || !("x" in object) || !("y" in object))
