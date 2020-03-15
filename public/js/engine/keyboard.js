@@ -1,65 +1,31 @@
-Game.prototype.timers = {};
-
-Game.prototype.keys = {
-    "up": true,
-    "right": true,
-    "down": true,
-    "left": true
-};
-
-Game.prototype.treatKey = {
-    37: "left",
-    65: "left",
-    38: "up",
-    87: "up",
-    39: "right",
-    68: "right",
-    40: "down",
-    83: "down"
-};
-
 Game.prototype.keyBoardListener = function () {
-    $(document)
-        .on("keydown", e => this.keyDown(e))
-        .on("keyup",  e =>this.keyUp(e))
-        .on("blur", e => this.blur(e));
-};
-Game.prototype.keyDown = function (e) {
-    const key = this.treatKey[e.keyCode || e.which];
-
-    if (!(key in this.keys) || (key in this.timers))
-        return;
-
-    this.timers[key] = null;
-    this.walkToDirection.apply([this, key, e]);
-    this.timers[key] = setInterval(this.walkToDirection.bind([this, key, e]), 0);
-    e.preventDefault();
+    this.keyup = e => this.key.onKeyUp(e);
+    this.keydown = e => this.key.onKeyDown(e);
+    document.addEventListener("keyup", this.keyup, false);
+    document.addEventListener("keydown", this.keydown, false);
 };
 
-Game.prototype.keyUp = function (e) {
-    const key = this.treatKey[e.keyCode || e.which];
+Game.prototype.key = {
+    _pressed: {},
 
-    if (key in this.timers) {
-        clearInterval(this.timers[key]);
-        delete this.timers[key];
-    };
-};
+    LEFT: 37,
+    UP: 38,
+    RIGHT: 39,
+    DOWN: 40,
+    W: 87,
+    A: 65,
+    S: 83,
+    D: 68,
 
-Game.prototype.blur = function (e) {
-    
-    for (let i in this.timers)
-        if (i) clearInterval(this.timers[i]);
+    isDown: function (keyCode) {
+        return this._pressed[keyCode];
+    },
 
-    this.timers = {};
-};
+    onKeyDown: function (e) {
+        this._pressed[e.keyCode] = true;
+    },
 
-Game.prototype.walkToDirection = function () {
-    if (!this[0].mapLoaded) return;
-
-    this[0].doMovement({
-        type: 0,
-        dir: this[1]
-    });
-
-    return this[2].preventDefault();
+    onKeyUp: function (e) {
+        delete this._pressed[e.keyCode];
+    }
 };

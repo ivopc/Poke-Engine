@@ -96,7 +96,7 @@ Game.prototype.cameraUpdate = function (obj, centralize, mapMaxLimit, timer) {
     };
 };
 
-Game.prototype.cameraFollow = function (objec$t) {
+Game.prototype.cameraFollow = function (object) {
 
     if (!object || !("x" in object) || !("y" in object))
         return;
@@ -115,6 +115,6 @@ Game.prototype.cameraFollow = function (objec$t) {
     if (limit.min.length || limit.max.length) {
         this.cameraUpdate(limit, centralize, mapMaxLimit, timer);
     } else {
-        this.world.stop(false, false).animate(centralize, timer);
+        this.$world.stop(false, false).animate(centralize, timer);
     };
 };

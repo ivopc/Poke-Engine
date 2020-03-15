@@ -54,16 +54,3 @@ Game.prototype.$dispatch = function () {
     this.keyBoardListener();
     setInterval(() => this.update(), 1000 / 30);
 };
-
-function init () {
-
-    const gameInstance = new Game();
-
-    gameInstance
-        .load()
-        .start();
-
-    gameInstance.$dispatch();
-};
-
-window.addEventListener("DOMContentLoaded", init);

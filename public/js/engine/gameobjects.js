@@ -14,8 +14,8 @@ const Character = function (game, x, y, facing, data) {
     this.stepFlag = 0;
 };
 
-// Add character to overworld
-Character.prototype.add = function () {
+// Add character to scene
+Character.prototype.addToScene = function () {
     this.$el = document.createElement("div");
     this.$el.setAttribute("class", `${this.character} ${this.character}_${this.position.facing}`);
 
@@ -26,8 +26,8 @@ Character.prototype.add = function () {
     this.game.$world.append(this.$el);
 };
 
-// Move character
-Character.prototype.move = function (direction, callback) {
+// Move character (walk)
+Character.prototype.walk = function (direction, callback) {
 
 
     if (this.isPlayer) {
@@ -42,7 +42,7 @@ Character.prototype.move = function (direction, callback) {
     switch (this.execCollision(direction)) {
         case 0: {
             this.position.facing = direction;
-            this.switchStep("");
+            this.switchStep("", direction);
             return;
         };
     };
@@ -50,7 +50,7 @@ Character.prototype.move = function (direction, callback) {
     if (this.isPlayer) {
         this.walkInProgress = true;
         this.position.facing = direction;
-        this.cameraFollow({
+        this.game.cameraFollow({
             x: this.position.x,
             y: this.position.y
         });
@@ -64,11 +64,11 @@ Character.prototype.move = function (direction, callback) {
     ]);
 };
 
-// Walk
+// Walk animation
 Character.prototype.syncWalk = [
     function (c) {
         this[0].setPosition(this[1]);
-        this[0].switchStep(this[0].stepFlag);
+        this[0].switchStep(this[0].stepFlag, this[1]);
         setTimeout(c, this[0].game.stepTime);
     },
     function (c) {
@@ -77,7 +77,7 @@ Character.prototype.syncWalk = [
     },
     function (c) {
         this[0].setPosition(this[1]);
-        this[0].switchStep("");
+        this[0].switchStep("", this[1]);
         setTimeout(c, this[0].game.stepTime);
     },
     function () {
@@ -128,7 +128,7 @@ Character.prototype.execCollision = function (direction) {
 
     const 
         checkY = this.game.mapTiles[position.y],
-        checkXY = checkY ? this.tileTypes[checkY[position.x]] : 0;
+        checkXY = checkY ? this.game.tileTypes[checkY[position.x]] : 0;
 
     if (!checkXY)
         return 0;
@@ -166,7 +166,7 @@ Character.prototype.setPosition = function (direction) {
 };
 
 // switch step flag
-Character.prototype.switchStep = function (flag) {
+Character.prototype.switchStep = function (flag, direction) {
 
     if (typeof(flag) == "number") {
         flag = flag ? 0 : 1;
@@ -187,7 +187,7 @@ const Player = function (game, x, y, facing, data) {
 Player.prototype = Object.create(Character.prototype);
 
 // add player to gameworld
-Player.prototype.add = function () {
+Player.prototype.addToScene = function () {
     this.$el = document.createElement("div");
     this.$el.setAttribute("class", `${this.character} ${this.character}_${this.position.facing}`);
     this.$el.setAttribute("id", "character");
