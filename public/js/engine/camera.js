@@ -1,8 +1,8 @@
 Game.prototype.coordinate2CameraCenter = function (object) {
     if (!object) {
         object = {};
-        object.x = this.x;
-        object.y = this.y;
+        object.x = this.player.position.x;
+        object.y = this.player.position.y;
     };
 
     return {
@@ -101,7 +101,8 @@ Game.prototype.cameraFollow = function (object) {
     if (!object || !("x" in object) || !("y" in object))
         return;
 
-    var centralize = this.coordinate2CameraCenter({
+    const 
+        centralize = this.coordinate2CameraCenter({
             x: object.x,
             y: object.y
         }),

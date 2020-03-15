@@ -1,5 +1,8 @@
 Game.prototype.socketListener = function () {
-    this.socket.on(Game.EVENTS.PLAYER_MOVE, data => this.dispatchOnlinePlayer(data));
+    this.socket.on(
+        Game.EVENTS.PLAYER_MOVE,
+        data => this.dispatchOnlinePlayer(data)
+    );
 };
 
 // When a online player moves

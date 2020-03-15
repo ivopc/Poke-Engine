@@ -6,11 +6,10 @@ const
 
 const Core = require("./core");
 
-io.on("connection", new Core().conn);
-
 app.use(express.static("../public"));
 
+io.on("connection", new Core().conn);
 
 http.listen(3000, () => {
-    console.log("Server now listening on :3000");
+    console.log("Server listening on :3000");
 });
