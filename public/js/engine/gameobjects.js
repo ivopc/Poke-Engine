@@ -35,10 +35,7 @@ Character.prototype.walk = function (direction, callback) {
 
 
     if (this.isPlayer) {
-        if (this.walkInProgress)
-            return;
-
-        if (this.stop)
+        if (this.walkInProgress || this.stop)
             return;
     };
 
@@ -210,7 +207,7 @@ Player.prototype.addToScene = function () {
 
 // send walk to socket.io
 Player.prototype.sendWalk = function (direction) {
-    this.game.socket.emit(EVENTS.PLAYER_MOVE, {
+    this.game.socket.emit(Game.EVENTS.PLAYER_MOVE, {
         x: this.position.x,
         y: this.position.y,
         character: this.character,

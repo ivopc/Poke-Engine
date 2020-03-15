@@ -33,7 +33,7 @@ Game.prototype.mapData = {
     height: 0
 };
 
-const EVENTS = {
+Game.EVENTS = {
     PLAYER_MOVE: 1
 };
 
