@@ -1,10 +1,10 @@
 Game.prototype.timers = {};
 
 Game.prototype.keys = {
-    "up": 1,
-    "right": 1,
-    "down": 1,
-    "left": 1
+    "up": true,
+    "right": true,
+    "down": true,
+    "left": true
 };
 
 Game.prototype.treatKey = {
@@ -20,24 +20,24 @@ Game.prototype.treatKey = {
 
 Game.prototype.keyBoardListener = function () {
     $(document)
-        .on("keydown", this.keyDown.bind(this))
-        .on("keyup", this.keyUp.bind(this))
-        .on("blur", this.blur.bind(this));
+        .on("keydown", e => this.keyDown(e))
+        .on("keyup",  e =>this.keyUp(e))
+        .on("blur", e => this.blur(e));
 };
-Game.prototype.keyDown = function (evt) {
-    var key = this.treatKey[evt.keyCode || evt.which];
+Game.prototype.keyDown = function (e) {
+    const key = this.treatKey[e.keyCode || e.which];
 
     if (!(key in this.keys) || (key in this.timers))
         return;
 
     this.timers[key] = null;
-    this.walkToDirection.apply([this, key, evt]);
-    this.timers[key] = setInterval(this.walkToDirection.bind([this, key, evt]), 0);
-    evt.preventDefault();
+    this.walkToDirection.apply([this, key, e]);
+    this.timers[key] = setInterval(this.walkToDirection.bind([this, key, e]), 0);
+    e.preventDefault();
 };
 
-Game.prototype.keyUp = function (evt) {
-    var key = this.treatKey[evt.keyCode || evt.which];
+Game.prototype.keyUp = function (e) {
+    const key = this.treatKey[e.keyCode || e.which];
 
     if (key in this.timers) {
         clearInterval(this.timers[key]);
@@ -45,9 +45,11 @@ Game.prototype.keyUp = function (evt) {
     };
 };
 
-Game.prototype.blur = function (evt) {
-    for (var i in this.timers)
+Game.prototype.blur = function (e) {
+    
+    for (let i in this.timers)
         if (i) clearInterval(this.timers[i]);
+
     this.timers = {};
 };
 

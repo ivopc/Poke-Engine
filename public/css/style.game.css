@@ -106,7 +106,7 @@ body {
     position: absolute;
 }
 
-#map-layer {
+#map-overlay {
     pointer-events: none;
     position: absolute;
     z-index: 6;

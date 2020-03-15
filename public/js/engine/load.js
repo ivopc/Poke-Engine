@@ -1,5 +1,8 @@
 Game.prototype.loadMap = function () {
-    $.getJSON("res/" + this.savedData.map + ".json", this.generateMapData.bind(this));
+    $.getJSON(
+        "res/" + this.savedData.map + ".json",
+        data => this.generateMapData(data)
+    );
     return this;
 };
 
@@ -16,30 +19,30 @@ Game.prototype.getSavedData = function (data) {
     return this;
 };
 
-Game.prototype.getImageData = function (img, callback) {
-    var a = new Image();
-    a.addEventListener("load", function cb() {
-        callback();
-    });
-    this.cache.appendChild(a);
-};
-
 Game.prototype.saveData = function (data) {};
 
 Game.prototype.setPlayerData = function () {
-    this.x = this.savedData.x;
-    this.y = this.savedData.y;
-    this.facing = this.savedData.facing;
-    this.character = this.savedData.character;
 
-    this.walkInProgress = false;
-    this.stepFlag = 0;
-    this.stop = false;
+    this.player = new Player(this, this.savedData.x, this.savedData.y, this.savedData.facing, {
+        character: this.savedData.character,
+        type: 0
+    });
 
-    this.element = document.querySelector("#character");
+    this.player.add();
 
-    this.element.style.top = this.y * this.tileSize + "px";
-    this.element.style.left = this.x * this.tileSize + "px";
-    this.element.setAttribute("class", this.character + " " + this.character + "_" + this.facing);
+    // this.x = this.savedData.x;
+    // this.y = this.savedData.y;
+    // this.facing = this.savedData.facing;
+    // this.character = this.savedData.character;
+
+    // this.walkInProgress = false;
+    // this.stepFlag = 0;
+    // this.stop = false;
+
+    // this.element = document.querySelector("#character");
+
+    // this.element.style.top = this.y * this.tileSize + "px";
+    // this.element.style.left = this.x * this.tileSize + "px";
+    // this.element.setAttribute("class", this.character + " " + this.character + "_" + this.facing);
     return this;
 };

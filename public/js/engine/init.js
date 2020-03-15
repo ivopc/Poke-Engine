@@ -1,11 +1,14 @@
-var Game = function () {
-    this.cache = document.querySelector("#cache");
-    this.loader = document.querySelector("#load_layer");
+const Game = function () {
+
+    this.socket = io();
+
+    this.$loader = document.querySelector("#load_layer");
     
     this.$level = document.querySelector("#level");
-    this.world = $("#world");
-    this.map = document.querySelector("#map");
-    this.overlay = document.querySelector("#map-layer");
+    this.$world = $("#world");
+    this.$map = document.querySelector("#map");
+    this.$overlay = document.querySelector("#map-overlay");
+    this.$player = document.querySelector("#player");
 
     this.level.size = {
         width: this.$level.clientWidth,

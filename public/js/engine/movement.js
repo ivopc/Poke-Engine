@@ -182,8 +182,3 @@ Game.prototype.switchStep = function (obj, flag) {
 
     obj.element.setAttribute("class", character + " " + character + "_" + obj.dir + (flag));
 };
-
-
-
-
-

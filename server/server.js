@@ -1,16 +1,15 @@
 const 
     express = require("express"),
-    io = require("socket.io"),
     app = express(),
     http = require("http").createServer(app);
+    io = require("socket.io")(http);
 
-app.get("/", (req, res) => {
-    res.send("Olá");
-});
+const Core = require("./core");
 
-io.on("connection", socket => {
-    console.log("Conectou");
-});
+io.on("connection", new Core().conn);
+
+app.use(express.static("../public"));
+
 
 http.listen(3000, () => {
     console.log("Server now listening on :3000");

@@ -19,7 +19,7 @@ Game.prototype.generateMapData = function (data) {
         }
     };
 
-    for (let = 0; i < y; i++) {
+    for (let i = 0; i < y; i++) {
         map.push([]);
         for (let ii = 0; ii < x; ii++) 
             map[i].push(collision[total++]);
@@ -36,15 +36,15 @@ Game.prototype.applyMap = function () {
     var name = this.savedData.map,
         m = this.maps[name];
     // this.savedData.map
-    $(this.loader).fadeOut(1200);
+    $(this.$loader).fadeOut(1200);
     
-    this.map.style.background = "url(" + m.src + name + m.ext + ")";
-    this.map.style.width = this.mapData.width * this.tileSize + "px";
-    this.map.style.height = this.mapData.height * this.tileSize + "px";
+    this.$map.style.background = "url(" + m.src + name + m.ext + ")";
+    this.$map.style.width = this.mapData.width * this.tileSize + "px";
+    this.$map.style.height = this.mapData.height * this.tileSize + "px";
 
-    this.overlay.style.background = "url(" + m.src + name + "_overlay" + m.ext + ")";
-    this.overlay.style.width = this.mapData.width * this.tileSize + "px";
-    this.overlay.style.height = this.mapData.height * this.tileSize + "px";
+    this.$overlay.style.background = "url(" + m.src + name + "_overlay" + m.ext + ")";
+    this.$overlay.style.width = this.mapData.width * this.tileSize + "px";
+    this.$overlay.style.height = this.mapData.height * this.tileSize + "px";
 
     this.mapLoaded = true;
 
