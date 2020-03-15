@@ -10,6 +10,6 @@ app.use(express.static("./public"));
 
 io.on("connection", new Core().conn);
 
-http.listen(3000, () => {
-    console.log("Server listening on :3000");
+http.listen(process.env.PORT || 3000, () => {
+    console.log(`Server listening on :${process.env.PORT || 3000}`);
 });
