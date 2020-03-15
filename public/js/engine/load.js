@@ -14,7 +14,8 @@ Game.prototype.fetchSavedData = function () {
         facing: localStorage.getItem("facing") || "down",
         character: localStorage.getItem("character") || "red",
         item: JSON.parse(localStorage.getItem("items")) || {},
-        choices: JSON.parse(localStorage.getItem("choices")) || {}
+        choices: JSON.parse(localStorage.getItem("choices")) || {},
+        uid: Date.now()
     };
     return this;
 };

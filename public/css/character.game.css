@@ -18,9 +18,12 @@
     list-style-type: none;
 }
 
-#other_player {
+div[online] {
     position: absolute;
-    margin-top: -8px !important;
+    z-index: 5;
+    margin-top: -8px;
+    background-repeat: no-repeat;
+    list-style-type: none;
 }
 
 .shadow_jump {

@@ -33,7 +33,8 @@ Game.prototype.generateMapData = function (data) {
 };
 
 Game.prototype.applyMap = function () {
-    var name = this.savedData.map,
+    const 
+        name = this.savedData.map,
         m = this.maps[name];
     // this.savedData.map
     $(this.$loader).fadeOut(1200);

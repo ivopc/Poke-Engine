@@ -22,6 +22,8 @@ Game.prototype.stepTime = 90;
 
 Game.prototype.objs = {};
 
+Game.prototype.onlinePlayers = {};
+
 Game.prototype.mapTiles = [];
 
 Game.prototype.tileSize = 16;
@@ -29,6 +31,10 @@ Game.prototype.tileSize = 16;
 Game.prototype.mapData = {
     width: 0,
     height: 0
+};
+
+const EVENTS = {
+    PLAYER_MOVE: 1
 };
 
 Game.prototype.level = {};

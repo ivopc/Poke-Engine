@@ -58,5 +58,6 @@ Game.prototype.update = function () {
 
 Game.prototype.$release = function () {
     this.keyBoardListener();
+    this.socketListener();
     setInterval(() => this.update(), 1000 / 30);
 };

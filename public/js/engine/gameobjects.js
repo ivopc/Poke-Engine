@@ -23,6 +23,10 @@ Character.prototype.addToScene = function () {
     this.$el.style.left = this.position.x * this.game.tileSize + "px";
     this.$el.style.top = this.position.y * this.game.tileSize + "px";
 
+    // if is an online player
+    if (this.type == 1)
+        this.$el.setAttribute("online", true);
+
     this.game.$world.append(this.$el);
 };
 
@@ -54,6 +58,7 @@ Character.prototype.walk = function (direction, callback) {
             x: this.position.x,
             y: this.position.y
         });
+        this.sendWalk(direction);
     };
 
     async.series([
@@ -94,7 +99,7 @@ Character.prototype.syncWalk = [
 // Collision check
 Character.prototype.execCollision = function (direction) {
 
-    const position = {... this.position}; 
+    const position = { ... this.position};
 
     switch (direction) {
         case "right":{
@@ -116,14 +121,18 @@ Character.prototype.execCollision = function (direction) {
     };
 
     if (!this.isPlayer) {
-        const collision = position.x == playerPosition.x && position.y == playerPosition.y;
+
+        if (this.type == 1)
+            return 1;
+
+        const collision = position.x == this.game.player.position.x && position.y == this.game.player.position.y;
         
         if (!collision) {
             this.position.x = position.x;
             this.position.y = position.y;
         };
 
-        return (collision ? 0 : 1);
+        return collision ? 0 : 1;
     };
 
     const 
@@ -197,4 +206,15 @@ Player.prototype.addToScene = function () {
     this.$el.style.top = this.position.y * this.game.tileSize + "px";
 
     this.game.$player.append(this.$el);
+};
+
+// send walk to socket.io
+Player.prototype.sendWalk = function (direction) {
+    this.game.socket.emit(EVENTS.PLAYER_MOVE, {
+        x: this.position.x,
+        y: this.position.y,
+        character: this.character,
+        direction,
+        uid: this.game.savedData.uid
+    });
 };
