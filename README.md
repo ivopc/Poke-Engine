@@ -12,7 +12,7 @@ You can change the character, x and y position and etc. in /js/engine/load.js in
 There's a list of playable characters in /css/character.game.css, like: red, leaft, brendan and etc, just need to change the character attribute in this.savedData.
 
 # ToDo List
-[x] Use socket.io to do a multiplayer game.
+- [x] Use socket.io to do a multiplayer game.
 - Virtual joystick for mobile devices.
 - Refatorate the cameraUpdate method.
 - Implement backend database with node.js ('ll use mysql for that :P ) for users register.
