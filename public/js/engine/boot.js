@@ -6,7 +6,7 @@ function init () {
         .load()
         .start();
 
-    gameInstance.$dispatch();
+    gameInstance.$release();
 };
 
 window.addEventListener("DOMContentLoaded", init);

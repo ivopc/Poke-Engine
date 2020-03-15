@@ -106,26 +106,15 @@ body {
     position: absolute;
 }
 
-#map-overlay {
-    pointer-events: none;
-    position: absolute;
-    z-index: 6;
-}
-
 #player {
     position: absolute;
     pointer-events: none;
 }
 
 #map-overlay {
-    min-width: 100%;
-    min-height: 100%;
     position: absolute;
-    top: 0;
-    left: 0;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 998;
-    display: none;
+    pointer-events: none;
+    z-index: 6;
 }
 
 .map_title {

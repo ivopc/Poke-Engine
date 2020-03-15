@@ -30,10 +30,16 @@ Game.prototype.load = function () {
 };
 
 Game.prototype.start = function () {
-    this.player = new Player(this, this.savedData.x, this.savedData.y, this.savedData.facing, {
-        character: this.savedData.character,
-        type: 0
-    });
+    this.player = new Player(
+        this, 
+        this.savedData.x, 
+        this.savedData.y, 
+        this.savedData.facing, 
+        {
+            character: this.savedData.character,
+            type: 0
+        }
+    );
 
     this.player.addToScene();
 };
@@ -50,7 +56,7 @@ Game.prototype.update = function () {
         this.player.walk("right");
 };
 
-Game.prototype.$dispatch = function () {
+Game.prototype.$release = function () {
     this.keyBoardListener();
     setInterval(() => this.update(), 1000 / 30);
 };
