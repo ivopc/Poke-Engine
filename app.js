@@ -4,12 +4,14 @@ const
     http = require("http").createServer(app),
     io = require("socket.io")(http);
 
+app.set("port", process.env.PORT || 3000);
+
 const Core = require("./server/core");
 
 app.use(express.static("./public"));
 
 io.on("connection", new Core().conn);
 
-http.listen(process.env.PORT || 3000, () => {
-    console.log(`Server listening on :${process.env.PORT || 3000}`);
+http.listen(app.get("port"), () => {
+    console.log("Server listening on :" + app.get("port"));
 });
