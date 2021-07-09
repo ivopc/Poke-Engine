@@ -1,3 +1,4 @@
+# (Outdated project, crap architecture. But you can study it if you want. [New one here](https://github.com/ivopc/PokeHTML5-client))
 # Poké-Engine
 Pokémon clone made with HTML, CSS and Javascript.
 
